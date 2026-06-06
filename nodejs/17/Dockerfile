@@ -22,9 +22,9 @@
 
 FROM        --platform=$TARGETOS/$TARGETARCH node:17-alpine
 
-LABEL       author="Matthew Penner" maintainer="matthew@pterodactyl.io"
+LABEL       author="Matthew Penner" maintainer="matthew@realmctl.com"
 
-LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         apk add --update --no-cache ca-certificates curl ffmpeg git openssl sqlite tar tzdata \

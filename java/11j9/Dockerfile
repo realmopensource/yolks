@@ -22,9 +22,9 @@
 
 FROM        --platform=$TARGETOS/$TARGETARCH ibm-semeru-runtimes:open-11-jdk
 
-LABEL       author="Matthew Penner" maintainer="matthew@pterodactyl.io"
+LABEL       author="Matthew Penner" maintainer="matthew@realmctl.com"
 
-LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN 		apt-get update -y \

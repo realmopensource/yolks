@@ -5,7 +5,7 @@ on:
     - cron: "0 0 1 * *"
   push:
     branches:
-      - master
+      - main
     paths:
       - oses/**
 jobs:
@@ -38,4 +38,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/pterodactyl/yolks:${{ matrix.oses }}
+            ghcr.io/realmopensource/yolks:${{ matrix.oses }}

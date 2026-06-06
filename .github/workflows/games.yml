@@ -5,7 +5,7 @@ on:
     - cron: "0 0 1 * *"
   push:
     branches:
-      - master
+      - main
     paths:
       - games/**
 jobs:
@@ -37,4 +37,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/pterodactyl/games:${{ matrix.game }}
+            ghcr.io/realmopensource/games:${{ matrix.game }}

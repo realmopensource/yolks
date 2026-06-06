@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2026 Pterodactyl
+# Copyright (c) 2026 Realm
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,16 @@
 # SOFTWARE.
 #
 
-FROM 		--platform=$TARGETOS/$TARGETARCH ghcr.io/pterodactyl/yolks:java_25
+FROM 		--platform=$TARGETOS/$TARGETARCH ghcr.io/realmopensource/yolks:java_25
 
 LABEL       author="William V." maintainer="william.venner@infraly.co"
 
-LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 USER		root
 
-COPY        --from=ghcr.io/pterodactyl/yolks:java_25 entrypoint.sh /java.sh
+COPY        --from=ghcr.io/realmopensource/yolks:java_25 entrypoint.sh /java.sh
 RUN 		chmod +x /java.sh
 
 RUN			apt-get update -y \
