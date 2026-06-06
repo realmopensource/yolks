@@ -1,6 +1,16 @@
 name: build games
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["build java"]
+    types: [completed]
+    branches: [main]
   schedule:
     - cron: "0 0 1 * *"
   push:
@@ -8,9 +18,44 @@ on:
       - main
     paths:
       - games/**
+
 jobs:
+  prepare-java-base:
+    name: ensure java_25 base image
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for Realm java_25 or bootstrap from upstream
+        run: |
+          set -euo pipefail
+
+          IMAGE="ghcr.io/realmopensource/yolks:java_25"
+          UPSTREAM="ghcr.io/pterodactyl/yolks:java_25"
+
+          for attempt in $(seq 1 18); do
+            if docker buildx imagetools inspect "${IMAGE}" >/dev/null 2>&1; then
+              echo "Found ${IMAGE}"
+              exit 0
+            fi
+
+            echo "Waiting for ${IMAGE} (${attempt}/18)..."
+            sleep 10
+          done
+
+          echo "${IMAGE} not published yet; mirroring ${UPSTREAM} for bootstrap"
+          docker buildx imagetools inspect "${UPSTREAM}"
+          docker buildx imagetools create -t "${IMAGE}" "${UPSTREAM}"
+
   push:
     name: "games:${{ matrix.game }}"
+    needs: prepare-java-base
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -23,18 +68,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v3
-        with:
-          buildkitd-flags: --debug
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v4
+      - uses: docker/build-push-action@v6
         with:
           context: ./games/${{ matrix.game }}
           file: ./games/${{ matrix.game }}/Dockerfile
           platforms: linux/amd64
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ghcr.io/realmopensource/games:${{ matrix.game }}

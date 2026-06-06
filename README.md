@@ -69,7 +69,26 @@ example `java/42/Dockerfile`. Update the matching `.github/workflows` file so th
 * `ghcr.io/realmopensource/installers:alpine`
 * `ghcr.io/realmopensource/installers:debian`
 
+## CI build order
+
+Base yolk images (`java`, `nodejs`, `python`, `go`, `oses`, `installers`) publish independently. The **games**
+workflow waits up to three minutes for `ghcr.io/realmopensource/yolks:java_25`, then mirrors the upstream
+`ghcr.io/pterodactyl/yolks:java_25` image if needed so `games:hytale` can build on a fresh registry.
+
+On a new fork, run **build java** first (workflow dispatch), then **build games**. After `java_25` exists under
+Realm, hytale rebuilds will use the Realm-built base automatically.
+
+### GHCR permissions (required)
+
+If **every** workflow fails at the push step, the org token cannot publish packages yet. Fix this in GitHub:
+
+1. **Org** `realmopensource` → **Settings** → **Actions** → **General** → **Workflow permissions** → **Read and write permissions**
+2. **Org** → **Settings** → **Actions** → **General** → enable workflows to use the default `GITHUB_TOKEN` with package write access
+3. After the first successful publish, open each new package under **Packages** → **Package settings** → **Change visibility** → **Public**
+4. Link packages to this repository where possible (**Connect repository**)
+
+Workflows use `permissions: packages: write`, `id-token: write`, login via `github.actor`, and `provenance: false` so GHCR accepts the push.
+
 ## Attribution
 
-Derived from the [Pterodactyl yolks](https://github.com/pterodactyl/yolks) project. Until Realm images are published,
-eggs can continue using `ghcr.io/pterodactyl/yolks` as a fallback.
+Derived from the [Pterodactyl yolks](https://github.com/pterodactyl/yolks) project.
