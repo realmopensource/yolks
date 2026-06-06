@@ -55,7 +55,8 @@ jobs:
         with:
           context: ./java
           file: ./java/${{ matrix.tag }}/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          # IBM Semeru OpenJ9 bases are amd64-only for several versions.
+          platforms: ${{ contains(matrix.tag, 'j9') && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: true
           provenance: false
           sbom: false

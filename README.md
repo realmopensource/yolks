@@ -12,8 +12,10 @@ following logic determines which namespace an image uses:
   They pre-install common tools like `curl` and `wget` to speed up installations.
 * `yolks` — generic runtime images (Java, Node.js, Python, Go, etc.) that eggs can swap between.
 
-All images support `linux/amd64` and `linux/arm64` unless otherwise noted. On arm64 nodes, use the same tag — no
-extra configuration is required.
+All images support `linux/amd64` and `linux/arm64` unless otherwise noted. **OpenJ9 variants** (`java_8j9`,
+`java_11j9`, `java_16j9`, etc.) are **amd64-only** because IBM Semeru does not publish arm64 manifests for
+every version. On arm64 nodes, use the matching HotSpot tag instead (for example `java_17` instead of
+`java_17j9`).
 
 ## Contributing
 
