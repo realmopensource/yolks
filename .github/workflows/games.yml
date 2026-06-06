@@ -32,12 +32,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Wait for Realm java_25 or bootstrap from upstream
+      - name: Wait for Realm java_25 base image
         run: |
           set -euo pipefail
 
           IMAGE="ghcr.io/realmopensource/yolks:java_25"
-          UPSTREAM="ghcr.io/pterodactyl/yolks:java_25"
 
           for attempt in $(seq 1 18); do
             if docker buildx imagetools inspect "${IMAGE}" >/dev/null 2>&1; then
@@ -49,9 +48,8 @@ jobs:
             sleep 10
           done
 
-          echo "${IMAGE} not published yet; mirroring ${UPSTREAM} for bootstrap"
-          docker buildx imagetools inspect "${UPSTREAM}"
-          docker buildx imagetools create -t "${IMAGE}" "${UPSTREAM}"
+          echo "ERROR: ${IMAGE} is not published. Run the build java workflow first."
+          exit 1
 
   push:
     name: "games:${{ matrix.game }}"

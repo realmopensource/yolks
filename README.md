@@ -74,11 +74,10 @@ example `java/42/Dockerfile`. Update the matching `.github/workflows` file so th
 ## CI build order
 
 Base yolk images (`java`, `nodejs`, `python`, `go`, `oses`, `installers`) publish independently. The **games**
-workflow waits up to three minutes for `ghcr.io/realmopensource/yolks:java_25`, then mirrors the upstream
-`ghcr.io/pterodactyl/yolks:java_25` image if needed so `games:hytale` can build on a fresh registry.
+workflow waits up to three minutes for `ghcr.io/realmopensource/yolks:java_25` before building game images.
 
-On a new fork, run **build java** first (workflow dispatch), then **build games**. After `java_25` exists under
-Realm, hytale rebuilds will use the Realm-built base automatically.
+Run **build java** first (workflow dispatch), then **build games**. If `java_25` is missing, the games workflow fails
+with a clear error instead of pulling images from another registry.
 
 ### GHCR permissions (required)
 
@@ -90,7 +89,3 @@ If **every** workflow fails at the push step, the org token cannot publish packa
 4. Link packages to this repository where possible (**Connect repository**)
 
 Workflows use `permissions: packages: write`, `id-token: write`, login via `github.actor`, and `provenance: false` so GHCR accepts the push.
-
-## Attribution
-
-Derived from the [Pterodactyl yolks](https://github.com/pterodactyl/yolks) project.
