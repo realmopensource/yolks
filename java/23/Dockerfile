@@ -1,4 +1,4 @@
-FROM        eclipse-temurin:23-jdk-noble
+FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:23-jdk-noble
 
 LABEL       author="Realm" maintainer="support@realmctl.com"
 
@@ -17,17 +17,18 @@ RUN         apt-get update -y \
                 tar \
                 sqlite3 \
                 fontconfig \
+                libfreetype6 \
                 tzdata \
                 iproute2 \
-                libfreetype6 \
-                tini \
-				zip \
-				unzip \
-			&& rm -rf /var/lib/apt/lists/*
+                libstdc++6 \
+                zip \
+                unzip \
+            && rm -rf /var/lib/apt/lists/* \
+            && useradd -d /home/container -m container
 
-## Setup working directory and environment
+USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY        --chown=root:root --chmod=755 ./../entrypoint.sh /entrypoint.sh
-ENTRYPOINT    ["/usr/bin/tini", "-g", "--", "/entrypoint.sh"]
+COPY        ./../entrypoint.sh /entrypoint.sh
+CMD         [ "/bin/bash", "/entrypoint.sh" ]
