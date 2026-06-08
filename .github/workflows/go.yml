@@ -48,7 +48,7 @@ jobs:
       - uses: docker/metadata-action@v5
         id: meta
         with:
-          images: ghcr.io/realmopensource/yolks
+          images: ghcr.io/realmctl/yolks
           tags: |
             type=raw,value=go_${{ matrix.tag }}
             type=raw,value=go_latest,enable=${{ matrix.tag == '1.26' }}

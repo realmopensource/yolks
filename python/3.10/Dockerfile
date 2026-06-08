@@ -24,7 +24,7 @@ FROM        --platform=$TARGETOS/$TARGETARCH python:3.10-alpine
 
 LABEL       author="Matthew Penner" maintainer="matthew@realmctl.com"
 
-LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmctl/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         apk add --update --no-cache cmake make ca-certificates curl ffmpeg g++ gcc git openssl sqlite tar tzdata \

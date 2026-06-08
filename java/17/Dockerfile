@@ -24,7 +24,7 @@ FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:17-jdk-jammy
 
 LABEL       author="Matthew Penner" maintainer="matthew@realmctl.com"
 
-LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmctl/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN 		apt-get update -y \

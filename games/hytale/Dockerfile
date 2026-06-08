@@ -20,16 +20,16 @@
 # SOFTWARE.
 #
 
-FROM 		--platform=$TARGETOS/$TARGETARCH ghcr.io/realmopensource/yolks:java_25
+FROM 		--platform=$TARGETOS/$TARGETARCH ghcr.io/realmctl/yolks:java_25
 
 LABEL       author="William V." maintainer="william.venner@infraly.co"
 
-LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmctl/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 USER		root
 
-COPY        --from=ghcr.io/realmopensource/yolks:java_25 entrypoint.sh /java.sh
+COPY        --from=ghcr.io/realmctl/yolks:java_25 entrypoint.sh /java.sh
 RUN 		chmod +x /java.sh
 
 RUN			apt-get update -y \

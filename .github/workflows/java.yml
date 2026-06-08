@@ -61,4 +61,4 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/yolks:java_${{ matrix.tag }}
+            ghcr.io/realmctl/yolks:java_${{ matrix.tag }}

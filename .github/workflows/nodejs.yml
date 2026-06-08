@@ -50,4 +50,4 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/yolks:nodejs_${{ matrix.tag }}
+            ghcr.io/realmctl/yolks:nodejs_${{ matrix.tag }}

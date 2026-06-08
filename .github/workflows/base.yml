@@ -45,4 +45,4 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/yolks:${{ matrix.oses }}
+            ghcr.io/realmctl/yolks:${{ matrix.oses }}

@@ -2,7 +2,7 @@ FROM        --platform=$TARGETOS/$TARGETARCH debian:buster-slim
 
 LABEL       author="Michael Parker" maintainer="parker@realmctl.com"
 
-LABEL       org.opencontainers.image.source="https://github.com/realmopensource/yolks"
+LABEL       org.opencontainers.image.source="https://github.com/realmctl/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
 
 RUN         sed -i -e 's/deb.debian.org/archive.debian.org/g' \

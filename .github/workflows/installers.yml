@@ -45,7 +45,7 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/installers:${{ matrix.tag }}
+            ghcr.io/realmctl/installers:${{ matrix.tag }}
 
   pushAmd:
     name: "installers:${{ matrix.tag }}"
@@ -72,4 +72,4 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/installers:${{ matrix.tag }}
+            ghcr.io/realmctl/installers:${{ matrix.tag }}

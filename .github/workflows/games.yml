@@ -36,7 +36,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          IMAGE="ghcr.io/realmopensource/yolks:java_25"
+          IMAGE="ghcr.io/realmctl/yolks:java_25"
 
           for attempt in $(seq 1 18); do
             if docker buildx imagetools inspect "${IMAGE}" >/dev/null 2>&1; then
@@ -80,4 +80,4 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/realmopensource/games:${{ matrix.game }}
+            ghcr.io/realmctl/games:${{ matrix.game }}

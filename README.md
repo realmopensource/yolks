@@ -3,7 +3,7 @@
 A curated collection of core Docker images for Realm's egg system. Each image is rebuilt periodically to keep
 dependencies up to date.
 
-Images are published to `ghcr.io/realmopensource` under the `yolks`, `games`, and `installers` namespaces. The
+Images are published to `ghcr.io/realmctl` under the `yolks`, `games`, and `installers` namespaces. The
 following logic determines which namespace an image uses:
 
 * `oses` — base images with core packages to get you started.
@@ -26,55 +26,55 @@ example `java/42/Dockerfile`. Update the matching `.github/workflows` file so th
 
 * [`base oses`](/oses)
   * [`alpine`](/oses/alpine)
-    * `ghcr.io/realmopensource/yolks:alpine`
+    * `ghcr.io/realmctl/yolks:alpine`
   * [`debian`](/oses/debian)
-    * `ghcr.io/realmopensource/yolks:debian`
+    * `ghcr.io/realmctl/yolks:debian`
 
 * [`games`](/games)
   * [`rust`](/games/rust)
-    * `ghcr.io/realmopensource/games:rust`
+    * `ghcr.io/realmctl/games:rust`
   * [`source`](/games/source)
-    * `ghcr.io/realmopensource/games:source`
+    * `ghcr.io/realmctl/games:source`
   * [`hytale`](/games/hytale)
-    * `ghcr.io/realmopensource/games:hytale`
+    * `ghcr.io/realmctl/games:hytale`
   * [`conan_exiles`](/games/conan_exiles)
-    * `ghcr.io/realmopensource/games:conan_exiles`
+    * `ghcr.io/realmctl/games:conan_exiles`
 
 * [`golang`](/go)
-  * [`go1.14`](/go/1.14) — `ghcr.io/realmopensource/yolks:go_1.14`
-  * [`go1.15`](/go/1.15) — `ghcr.io/realmopensource/yolks:go_1.15`
-  * [`go1.16`](/go/1.16) — `ghcr.io/realmopensource/yolks:go_1.16`
-  * [`go1.17`](/go/1.17) — `ghcr.io/realmopensource/yolks:go_1.17`
-  * [`go1.18`](/go/1.18) — `ghcr.io/realmopensource/yolks:go_1.18`
-  * [`go1.19`](/go/1.19) — `ghcr.io/realmopensource/yolks:go_1.19`
-  * [`go1.20`](/go/1.20) — `ghcr.io/realmopensource/yolks:go_1.20`
-  * [`go1.21`](/go/1.21) — `ghcr.io/realmopensource/yolks:go_1.21`
-  * [`go1.22`](/go/1.22) — `ghcr.io/realmopensource/yolks:go_1.22`
-  * [`go1.23`](/go/1.23) — `ghcr.io/realmopensource/yolks:go_1.23`
-  * [`go1.24`](/go/1.24) — `ghcr.io/realmopensource/yolks:go_1.24`
-  * [`go1.25`](/go/1.25) — `ghcr.io/realmopensource/yolks:go_1.25`
-  * [`go1.26`](/go/1.26) — `ghcr.io/realmopensource/yolks:go_1.26`, `ghcr.io/realmopensource/yolks:go_latest`
+  * [`go1.14`](/go/1.14) — `ghcr.io/realmctl/yolks:go_1.14`
+  * [`go1.15`](/go/1.15) — `ghcr.io/realmctl/yolks:go_1.15`
+  * [`go1.16`](/go/1.16) — `ghcr.io/realmctl/yolks:go_1.16`
+  * [`go1.17`](/go/1.17) — `ghcr.io/realmctl/yolks:go_1.17`
+  * [`go1.18`](/go/1.18) — `ghcr.io/realmctl/yolks:go_1.18`
+  * [`go1.19`](/go/1.19) — `ghcr.io/realmctl/yolks:go_1.19`
+  * [`go1.20`](/go/1.20) — `ghcr.io/realmctl/yolks:go_1.20`
+  * [`go1.21`](/go/1.21) — `ghcr.io/realmctl/yolks:go_1.21`
+  * [`go1.22`](/go/1.22) — `ghcr.io/realmctl/yolks:go_1.22`
+  * [`go1.23`](/go/1.23) — `ghcr.io/realmctl/yolks:go_1.23`
+  * [`go1.24`](/go/1.24) — `ghcr.io/realmctl/yolks:go_1.24`
+  * [`go1.25`](/go/1.25) — `ghcr.io/realmctl/yolks:go_1.25`
+  * [`go1.26`](/go/1.26) — `ghcr.io/realmctl/yolks:go_1.26`, `ghcr.io/realmctl/yolks:go_latest`
 
 * [`java`](/java)
-  * `ghcr.io/realmopensource/yolks:java_8`, `java_8j9`, `java_11`, `java_11j9`, `java_16`, `java_16j9`
+  * `ghcr.io/realmctl/yolks:java_8`, `java_8j9`, `java_11`, `java_11j9`, `java_16`, `java_16j9`
   * `java_17`, `java_17j9`, `java_18`, `java_18j9`, `java_19`, `java_19j9`
   * `java_21`, `java_22`, `java_23`, `java_24`, `java_25`
 
 * [`nodejs`](/nodejs)
-  * `ghcr.io/realmopensource/yolks:nodejs_12` through `nodejs_20`
+  * `ghcr.io/realmctl/yolks:nodejs_12` through `nodejs_20`
 
 * [`python`](/python)
-  * `ghcr.io/realmopensource/yolks:python_3.7` through `python_3.11`
+  * `ghcr.io/realmctl/yolks:python_3.7` through `python_3.11`
 
 ### Installation Images
 
-* `ghcr.io/realmopensource/installers:alpine`
-* `ghcr.io/realmopensource/installers:debian`
+* `ghcr.io/realmctl/installers:alpine`
+* `ghcr.io/realmctl/installers:debian`
 
 ## CI build order
 
 Base yolk images (`java`, `nodejs`, `python`, `go`, `oses`, `installers`) publish independently. The **games**
-workflow waits up to three minutes for `ghcr.io/realmopensource/yolks:java_25` before building game images.
+workflow waits up to three minutes for `ghcr.io/realmctl/yolks:java_25` before building game images.
 
 Run **build java** first (workflow dispatch), then **build games**. If `java_25` is missing, the games workflow fails
 with a clear error instead of pulling images from another registry.
@@ -83,7 +83,7 @@ with a clear error instead of pulling images from another registry.
 
 If **every** workflow fails at the push step, the org token cannot publish packages yet. Fix this in GitHub:
 
-1. **Org** `realmopensource` → **Settings** → **Actions** → **General** → **Workflow permissions** → **Read and write permissions**
+1. **Org** `realmctl` → **Settings** → **Actions** → **General** → **Workflow permissions** → **Read and write permissions**
 2. **Org** → **Settings** → **Actions** → **General** → enable workflows to use the default `GITHUB_TOKEN` with package write access
 3. After the first successful publish, open each new package under **Packages** → **Package settings** → **Change visibility** → **Public**
 4. Link packages to this repository where possible (**Connect repository**)
